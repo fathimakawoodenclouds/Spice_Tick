@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloves — Spice Tick | The Aromatic Treasure from Idukki</title>
+    <meta name="description" content="Discover warm, aromatic cloves grown in the serene hills of Idukki, Kerala. Handpicked by devoted farmers.">
+    <link rel="icon" href="Images/spicetick_gold_transparent.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lato:wght@300;400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+        :root{--gold:#C8922A;--gold-light:#e0b354;--gold-dark:#9a6e1a;--black:#0a0a0a;--black-light:#141414;--black-card:#1a1a1a;--cream:#ffffff;--text-light:#f5f5f5;--text-muted:#b0aba5;--font-display:'Playfair Display',Georgia,serif;--font-body:'Lato',sans-serif;--font-accent:'Cormorant Garamond',serif}
+        html{scroll-behavior:smooth;overflow-x:hidden;width:100%}
+        body{font-family:var(--font-body);background:var(--black);color:var(--text-light);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+        ::-webkit-scrollbar{width:8px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:4px}
+
+        .navbar{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:20px 60px;display:flex;align-items:center;justify-content:space-between;background:rgba(10,10,10,.9);backdrop-filter:blur(20px);box-shadow:0 4px 30px rgba(0,0,0,.3)}
+        .nav-logo img{height:45px;filter:drop-shadow(0 2px 8px rgba(200,146,42,.3))}
+        .nav-back{display:inline-flex;align-items:center;gap:10px;color:var(--gold);text-decoration:none;font-size:.8rem;letter-spacing:3px;text-transform:uppercase;transition:all .3s}
+        .nav-back:hover{color:var(--gold-light);gap:14px}
+        .nav-back:hover i{transform:translateX(-4px)}
+        .nav-back i{transition:transform .3s}
+
+        .product-hero{position:relative;width:100%;height:75vh;overflow:hidden;display:flex;align-items:center;justify-content:center}
+        .product-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.05);animation:heroZoom 15s ease-in-out infinite alternate}
+        @keyframes heroZoom{0%{transform:scale(1.05)}100%{transform:scale(1.15)}}
+        .product-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.4) 0%,rgba(10,10,10,.5) 50%,rgba(10,10,10,.95) 100%)}
+        .product-hero-content{position:relative;z-index:2;text-align:center;opacity:0;transform:translateY(30px);animation:fadeUp 1s .3s forwards}
+        .product-hero-label{font-size:.75rem;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+        .product-hero-title{font-family:var(--font-display);font-size:clamp(3rem,7vw,6rem);font-weight:700;color:var(--cream);line-height:1.1}
+        .product-hero-subtitle{font-family:var(--font-accent);font-size:1.3rem;color:var(--text-muted);font-style:italic;margin-top:15px}
+        @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+        .product-section{padding:100px 60px;max-width:1200px;margin:0 auto}
+        .product-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+        .product-text-block .label{font-size:.7rem;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+        .product-text-block h2{font-family:var(--font-display);font-size:2.5rem;font-weight:600;color:var(--cream);line-height:1.2;margin-bottom:20px}
+        .gold-divider{width:60px;height:1.5px;background:var(--gold);margin:25px 0}
+        .product-text-block p{font-family:var(--font-accent);font-size:1.2rem;color:var(--text-muted);line-height:1.9;margin-bottom:20px;text-align:justify}
+        .product-image-frame{position:relative;border-radius:8px;overflow:hidden}
+        .product-image-frame::before{content:'';position:absolute;top:-15px;left:-15px;width:calc(100% + 5px);height:calc(100% + 5px);border:1px solid rgba(200,146,42,.2);border-radius:8px;z-index:0}
+        .product-image-frame img{width:100%;height:500px;object-fit:cover;border-radius:8px;position:relative;z-index:1;transition:transform .8s}
+        .product-image-frame:hover img{transform:scale(1.03)}
+
+        .features-row{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:80px}
+        .feature-card{background:var(--black-card);border-radius:8px;padding:40px 30px;text-align:center;border:1px solid rgba(200,146,42,.08);transition:all .5s}
+        .feature-card:hover{border-color:rgba(200,146,42,.2);transform:translateY(-8px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+        .feature-icon{width:60px;height:60px;border-radius:50%;background:rgba(200,146,42,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--gold);font-size:1.3rem}
+        .feature-card h4{font-family:var(--font-display);font-size:1.2rem;color:var(--cream);margin-bottom:10px}
+        .feature-card p{font-family:var(--font-accent);font-size:1rem;color:var(--text-muted);line-height:1.7}
+
+        .gallery-section{padding:0 60px 100px;max-width:1200px;margin:0 auto}
+        .gallery-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .gallery-strip img{width:100%;height:300px;object-fit:cover;border-radius:6px;filter:brightness(.8);transition:all .5s}
+        .gallery-strip img:hover{filter:brightness(1);transform:scale(1.02)}
+
+        .cta-banner{text-align:center;padding:80px 40px;background:linear-gradient(135deg,var(--black-light) 0%,rgba(200,146,42,.05) 100%);border-top:1px solid rgba(200,146,42,.1);border-bottom:1px solid rgba(200,146,42,.1)}
+        .cta-banner h3{font-family:var(--font-display);font-size:2rem;color:var(--cream);margin-bottom:15px}
+        .cta-banner p{font-family:var(--font-accent);font-size:1.1rem;color:var(--text-muted);margin-bottom:30px}
+        .cta-btn{display:inline-flex;align-items:center;gap:12px;padding:16px 45px;border:1.5px solid var(--gold);color:var(--gold);background:transparent;font-family:var(--font-body);font-size:.8rem;letter-spacing:4px;text-transform:uppercase;text-decoration:none;transition:all .5s}
+        .cta-btn:hover{background:var(--gold);color:var(--black);box-shadow:0 0 40px rgba(200,146,42,.3)}
+
+        .footer{padding:40px 60px 25px;background:var(--black);border-top:1px solid rgba(200,146,42,.1)}
+        .footer-content{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto}
+        .footer-logo img{height:40px;opacity:.7}
+        .footer-text{font-size:.8rem;color:var(--text-muted);letter-spacing:1px}
+        .footer-social{display:flex;gap:15px}
+        .footer-social a{color:var(--text-muted);font-size:1rem;transition:color .3s;text-decoration:none}
+        .footer-social a:hover{color:var(--gold)}
+
+        .whatsapp-float{position:fixed;bottom:90px;right:30px;z-index:900;width:60px;height:60px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.6rem;text-decoration:none;box-shadow:0 6px 25px rgba(37,211,102,.4);transition:all .4s;animation:wp 2s infinite}
+        .whatsapp-float:hover{transform:scale(1.1)}
+        @keyframes wp{0%,100%{box-shadow:0 6px 25px rgba(37,211,102,.4)}50%{box-shadow:0 6px 35px rgba(37,211,102,.6),0 0 0 12px rgba(37,211,102,.1)}}
+
+        .reveal{opacity:0;transform:translateY(40px);transition:all .8s}.reveal.visible{opacity:1;transform:translateY(0)}
+
+        @media(max-width:768px){
+            .navbar{padding:15px 25px}.product-hero{height:60vh}.product-section{padding:60px 25px}
+            .product-content-grid{grid-template-columns:1fr;gap:40px}.product-image-frame img{height:350px}
+            .product-image-frame::before{display:none}.features-row{grid-template-columns:1fr;max-width:400px;margin:60px auto 0}
+            .gallery-section{padding:0 25px 60px}.gallery-strip{grid-template-columns:1fr}
+            .footer{padding:30px 25px 20px}.footer-content{flex-direction:column;gap:15px;text-align:center}
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-logo"><img src="Images/spicetick_gold_transparent.png" alt="Spice Tick"></a>
+        <a href="index.html#products" class="nav-back"><i class="fas fa-arrow-left"></i> Back to Products</a>
+    </nav>
+
+    <section class="product-hero">
+        <img src="Images/clove_macro.png" alt="Cloves close-up">
+        <div class="product-hero-overlay"></div>
+        <div class="product-hero-content">
+            <p class="product-hero-label">Premium Spice</p>
+            <h1 class="product-hero-title">Cloves</h1>
+            <p class="product-hero-subtitle">The Aromatic Treasure — From the Serene Hills of Idukki</p>
+        </div>
+    </section>
+
+    <div class="product-section">
+        <div class="product-content-grid reveal">
+            <div class="product-text-block">
+                <p class="label">About Our Cloves</p>
+                <h2>Warm, Aromatic Charm</h2>
+                <div class="gold-divider"></div>
+                <p>Uncover the warm, aromatic charm of cloves grown in the serene hills of Idukki. Cultivated in nature's purest environment, each clove captures the rich heritage and distinctive flavor of Kerala's famous spice lands, adding depth and warmth to your culinary creations.</p>
+                <p>By choosing our cloves, you support the devoted farmers of the high range region, who handpick and carefully prepare every batch. This ensures you receive the freshest, most genuine spices, directly from the heart of Idukki to your kitchen.</p>
+            </div>
+            <div class="product-image-frame">
+                <img src="Images/clove_new.jpg" alt="Spice Tick Cloves">
+            </div>
+        </div>
+        <div class="features-row reveal">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-spa"></i></div>
+                <h4>Aromatic Richness</h4>
+                <p>Intensely fragrant cloves with a warm, sweet undertone from Idukki's pristine environment.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-hand-sparkles"></i></div>
+                <h4>Hand-Selected</h4>
+                <p>Each bud is handpicked at the perfect stage of maturity for maximum flavor and aroma.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fas fa-gem"></i></div>
+                <h4>Heritage Quality</h4>
+                <p>Traditional drying methods preserve the essential oils that make our cloves exceptional.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="gallery-section reveal">
+        <div class="gallery-strip">
+            <img src="Images/spices_new.png" alt="Spice explosion">
+            <img src="Images/IMG_3159.JPG.jpeg" alt="Clove plantation">
+            <img src="Images/combo.png" alt="Spice Tick collection">
+        </div>
+    </div>
+
+    <div class="cta-banner reveal">
+        <h3>Interested in Our Cloves?</h3>
+        <p>Get in touch with us for bulk orders and inquiries.</p>
+        <a href="https://wa.me/918590091408?text=Hi%20Spice%20Tick!%20I%20am%20interested%20in%20your%20Cloves." target="_blank" class="cta-btn"><i class="fab fa-whatsapp"></i> Chat With Us</a>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="index.html" class="footer-logo"><img src="Images/spicetick_gold_transparent.png" alt="Spice Tick"></a>
+            <p class="footer-text">&copy; 2026 Spice Tick by V RS Spices. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/spice_tick?igsh=YjZwMWl3NmViNGtz" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/918590091408" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:spicetick@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/918590091408?text=Hi%20Spice%20Tick!%20I%20am%20interested%20in%20your%20Cloves." target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+        const revealEls=document.querySelectorAll('.reveal');
+        const obs=new IntersectionObserver(e=>{e.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.12});
+        revealEls.forEach(el=>obs.observe(el));
+    </script>
+</body>
+</html>

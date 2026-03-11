@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spice Tick — Premium Spices from the Hills of Idukki</title>
+    <meta name="description"
+        content="Discover premium cardamom, pepper and cloves handpicked from the lush hills of Idukki, Kerala. V RS Spices brings the finest spices from farm to your kitchen.">
+    <link rel="icon" href="Images/spicetick_gold_transparent.png" type="image/png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Lato:wght@300;400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* ===== CSS RESET & VARIABLES ===== */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #C8922A;
+            --gold-light: #e0b354;
+            --gold-dark: #9a6e1a;
+            --black: #0a0a0a;
+            --black-light: #141414;
+            --black-card: #1a1a1a;
+            --dark-green: #1a2e1a;
+            --cream: #ffffff;
+            --cream-dark: #f0f0f0;
+            --text-light: #f5f5f5;
+            --text-muted: #b0aba5;
+            --font-display: 'Playfair Display', Georgia, serif;
+            --font-body: 'Lato', 'Segoe UI', sans-serif;
+            --font-accent: 'Cormorant Garamond', Georgia, serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            width: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: var(--black);
+            color: var(--text-light);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== CUSTOM SCROLLBAR ===== */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--black);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold-dark);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        /* ===== PRELOADER ===== */
+        .preloader {
+            position: fixed;
+            inset: 0;
+            background: var(--black);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 30px;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .preloader img {
+            width: 100px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .preloader-bar {
+            width: 200px;
+            height: 2px;
+            background: rgba(200, 146, 42, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .preloader-bar::after {
+            content: '';
+            display: block;
+            width: 40%;
+            height: 100%;
+            background: var(--gold);
+            border-radius: 2px;
+            animation: loading 1.2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes loading {
+            0% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(350%);
+            }
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 14px 60px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-logo img {
+            height: 55px;
+            transition: height 0.4s ease;
+            filter: drop-shadow(0 2px 8px rgba(200, 146, 42, 0.3));
+        }
+
+        .navbar.scrolled .nav-logo img {
+            height: 42px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-family: var(--font-body);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            position: relative;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1.5px;
+            background: var(--gold);
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 28px;
+            height: 2px;
+            background: var(--cream);
+            transition: all 0.4s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+        /* ===== HERO / VIDEO BANNER ===== */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg,
+                    rgba(10, 10, 10, 0.7) 0%,
+                    rgba(10, 10, 10, 0.55) 40%,
+                    rgba(10, 10, 10, 0.7) 80%,
+                    rgba(10, 10, 10, 0.95) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 800px;
+            padding: 0 30px;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.5s forwards;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.1;
+            margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 0.8s forwards;
+            text-shadow: 0 3px 20px rgba(0, 0, 0, 0.9), 0 1px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-title span {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .hero-subtitle {
+            font-family: var(--font-accent);
+            font-size: 1.3rem;
+            color: var(--cream-dark);
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 1.1s forwards;
+            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.9), 0 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 45px;
+            background: rgba(10, 10, 10, 0.5);
+            border: 1.5px solid var(--gold);
+            color: var(--gold-light);
+            font-family: var(--font-body);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s 1.4s forwards;
+            text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+        }
+
+        .hero-cta:hover {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 40px rgba(200, 146, 42, 0.3);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--cream-dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: fadeUp 1s 1.8s forwards;
+            opacity: 0;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-scroll .line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+            animation: scrollLine 2s ease-in-out infinite;
+        }
+
+        @keyframes scrollLine {
+
+            0%,
+            100% {
+                transform: scaleY(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scaleY(0.5);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== SECTION COMMONS ===== */
+        .section {
+            padding: 120px 60px;
+            position: relative;
+        }
+
+        .section-label {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 400;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 600;
+            color: var(--cream);
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .section-text {
+            font-family: var(--font-accent);
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.85;
+            max-width: 600px;
+            text-align: justify;
+        }
+
+        .gold-divider {
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px 0;
+        }
+
+        .gold-divider.centered {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.9s cubic-bezier(0.4, 0, 0.2, 1), transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .reveal-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px);
+            transition: opacity 0.9s ease, transform 0.9s ease;
+        }
+
+        .reveal-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* ===== ABOUT SECTION ===== */
+        .about {
+            background: var(--black);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .about-image-wrap {
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+        }
+
+        .about-image-wrap::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: calc(100% + 10px);
+            height: calc(100% + 10px);
+            border: 1px solid var(--gold);
+            border-radius: 4px;
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .about-image-wrap img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 4px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.8s ease;
+        }
+
+        .about-image-wrap:hover img {
+            transform: scale(1.03);
+        }
+
+        .about-stats {
+            display: flex;
+            gap: 50px;
+            margin-top: 40px;
+        }
+
+        .stat-item h3 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .stat-item p {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-top: 5px;
+        }
+
+        /* ===== PRODUCTS SECTION ===== */
+        .products {
+            background: linear-gradient(180deg, var(--black) 0%, var(--black-light) 50%, var(--black) 100%);
+        }
+
+        .products-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .products-header .section-text {
+            margin: 0 auto;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            position: relative;
+            background: var(--black-card);
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s ease;
+            text-decoration: none;
+            display: block;
+        }
+
+        .product-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(200, 146, 42, 0.08);
+        }
+
+        .product-card-image {
+            position: relative;
+            height: 420px;
+            overflow: hidden;
+        }
+
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .product-card:hover .product-card-image img {
+            transform: scale(1.1);
+        }
+
+        .product-card-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 50%, rgba(10, 10, 10, 0.95) 100%);
+        }
+
+        .product-card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            z-index: 2;
+        }
+
+        .product-card-name {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            color: var(--cream);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .product-card-origin {
+            font-family: var(--font-accent);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .product-card-bottom {
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(200, 146, 42, 0.1);
+        }
+
+        .product-card-cta {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .product-card-arrow {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 0.75rem;
+            transition: all 0.4s ease;
+        }
+
+        .product-card:hover .product-card-arrow {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateX(4px);
+        }
+
+        /* ===== SHOWCASE SECTION ===== */
+        .showcase {
+            position: relative;
+            padding: 0;
+            height: 70vh;
+            overflow: hidden;
+        }
+
+        .showcase img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .showcase-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                    rgba(10, 10, 10, 0.9) 0%,
+                    rgba(10, 10, 10, 0.4) 50%,
+                    rgba(10, 10, 10, 0.9) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+            text-align: center;
+        }
+
+        .showcase-overlay .section-label {
+            margin-bottom: 0;
+        }
+
+        .showcase-quote {
+            font-family: var(--font-display);
+            font-size: clamp(1.5rem, 3vw, 2.8rem);
+            color: var(--cream);
+            font-weight: 500;
+            font-style: italic;
+            max-width: 700px;
+            line-height: 1.4;
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        .contact {
+            background: var(--black-light);
+        }
+
+        .contact-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            padding: 20px 15px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            border: 1px solid rgba(200, 146, 42, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(200, 146, 42, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(200, 146, 42, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1rem;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+        }
+
+        .contact-item:hover .contact-icon {
+            background: var(--gold);
+            color: var(--black);
+            box-shadow: 0 0 25px rgba(200, 146, 42, 0.2);
+        }
+
+        .contact-item-label {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .contact-item-value {
+            font-family: var(--font-body);
+            font-size: 0.95rem;
+            color: var(--cream);
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .contact-item-value a {
+            color: var(--cream);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item-value a:hover {
+            color: var(--gold);
+            border-bottom-color: var(--gold);
+        }
+
+        /* Social links row */
+        .social-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            border: 1px solid rgba(200, 146, 42, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--black);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(200, 146, 42, 0.2);
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            padding: 50px 60px 30px;
+            background: var(--black);
+            border-top: 1px solid rgba(200, 146, 42, 0.1);
+        }
+
+        .footer-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .footer-logo img {
+            height: 45px;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .footer-logo img:hover {
+            opacity: 1;
+        }
+
+        .footer-text {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-social a {
+            color: var(--text-muted);
+            font-size: 1rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        /* ===== FLOATING WHATSAPP ===== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            z-index: 900;
+            width: 60px;
+            height: 60px;
+            background: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.6rem;
+            text-decoration: none;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+            transition: all 0.4s ease;
+            animation: whatsappPulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 35px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes whatsappPulse {
+
+            0%,
+            100% {
+                box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 6px 35px rgba(37, 211, 102, 0.6), 0 0 0 12px rgba(37, 211, 102, 0.1);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 1024px) {
+            .section {
+                padding: 80px 40px;
+            }
+
+            .navbar {
+                padding: 18px 30px;
+            }
+
+            .navbar.scrolled {
+                padding: 12px 30px;
+            }
+
+            .about-grid {
+                gap: 50px;
+            }
+
+            .products-grid {
+                gap: 25px;
+            }
+
+            .product-card-image {
+                height: 350px;
+            }
+
+            .contact-grid {
+                gap: 50px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 70px 25px;
+            }
+
+            .navbar {
+                padding: 15px 25px;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 100%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.97);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 35px;
+                transition: right 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1rem;
+                letter-spacing: 5px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .about-image-wrap img {
+                height: 350px;
+            }
+
+            .about-image-wrap::before {
+                display: none;
+            }
+
+            .about-stats {
+                gap: 30px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .product-card-image {
+                height: 380px;
+            }
+
+            .showcase {
+                height: 50vh;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-map {
+                min-height: 300px;
+            }
+
+            .footer {
+                padding: 40px 25px 20px;
+            }
+
+            .contact-info {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .contact-item {
+                padding: 20px;
+                background: rgba(255, 255, 255, 0.02);
+                border-radius: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 60px 20px;
+            }
+
+            .hero-tagline {
+                font-size: 0.65rem;
+                letter-spacing: 5px;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .stat-item h3 {
+                font-size: 2rem;
+            }
+
+            .about-stats {
+                flex-wrap: wrap;
+            }
+
+            .whatsapp-float {
+                width: 52px;
+                height: 52px;
+                font-size: 1.4rem;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- PRELOADER -->
+    <div class="preloader" id="preloader">
+        <img src="Images/spicetick_gold_transparent.png" alt="Spice Tick">
+        <div class="preloader-bar"></div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <a href="#" class="nav-logo">
+            <img src="Images/spicetick_gold_transparent.png" alt="Spice Tick Logo">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#hero" onclick="closeMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMenu()">About</a></li>
+            <li><a href="#products" onclick="closeMenu()">Products</a></li>
+            <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO VIDEO BANNER -->
+    <section class="hero" id="hero">
+        <video class="hero-video" autoplay muted loop playsinline poster="Images/hero-fallback.png">
+            <source src="Images/video.MP4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <p class="hero-tagline">From the Hills of Idukki</p>
+            <h1 class="hero-title">Where Nature Meets <span>Flavor</span></h1>
+            <p class="hero-subtitle">Premium cardamom, pepper & cloves — handpicked from Kerala's finest spice gardens
+            </p>
+            <a href="#products" class="hero-cta">Explore Our Spices <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-scroll">
+            <span>Scroll</span>
+            <div class="line"></div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about" id="about">
+        <div class="about-grid">
+            <div class="about-image-wrap reveal-left">
+                <img src="Images/about.png" alt="Spice heritage of Idukki">
+            </div>
+            <div class="reveal-right">
+                <p class="section-label">Our Story</p>
+                <h2 class="section-title">A Legacy Rooted in Idukki's Spice Heritage</h2>
+                <div class="gold-divider"></div>
+                <p class="section-text">
+                    Nestled in the mist-covered highlands of Idukki, Kerala, Spice Tick brings you the finest spices
+                    cultivated by generations of passionate farmers. Our cardamom, pepper, and cloves grow in harmony
+                    with nature — nurtured by rich soil, gentle rains, and the cool mountain air of the Western Ghats.
+                </p>
+                <p class="section-text" style="margin-top: 20px;">
+                    We believe in preserving the authentic flavors that made Kerala the "Spice Garden of India." Every
+                    pod, peppercorn, and bud is handpicked with care and delivered with love — straight from our hills
+                    to your kitchen.
+                </p>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <h3>100%</h3>
+                        <p>Natural</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Idukki</h3>
+                        <p>Origin</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>Farm</h3>
+                        <p>Fresh</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCTS SECTION -->
+    <section class="section products" id="products">
+        <div class="products-header reveal">
+            <p class="section-label">Our Collection</p>
+            <h2 class="section-title">Premium Spices, Handpicked Perfection</h2>
+            <div class="gold-divider centered"></div>
+            <p class="section-text">Each spice tells the story of Idukki's highlands — cultivated with care by local
+                farmers who have perfected their craft over generations.</p>
+        </div>
+        <div class="products-grid">
+            <!-- Cardamom -->
+            <a href="cardamom.html" class="product-card reveal" style="transition-delay: 0.1s;">
+                <div class="product-card-image">
+                    <img src="Images/IMG_3159.jpeg" alt="Cardamom by Spice Tick">
+                    <div class="product-card-info">
+                        <h3 class="product-card-name">Cardamom</h3>
+                        <p class="product-card-origin">Queen of Spices</p>
+                    </div>
+                </div>
+                <div class="product-card-bottom">
+                    <span class="product-card-cta">Discover</span>
+                    <span class="product-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <!-- Pepper -->
+            <a href="pepper.html" class="product-card reveal" style="transition-delay: 0.25s;">
+                <div class="product-card-image">
+                    <img src="Images/pepper_new.jpg" alt="Black Pepper by Spice Tick">
+                    <div class="product-card-info">
+                        <h3 class="product-card-name">Black Pepper</h3>
+                        <p class="product-card-origin">King of Spices</p>
+                    </div>
+                </div>
+                <div class="product-card-bottom">
+                    <span class="product-card-cta">Discover</span>
+                    <span class="product-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+            <!-- Clove -->
+            <a href="clove.html" class="product-card reveal" style="transition-delay: 0.4s;">
+                <div class="product-card-image">
+                    <img src="Images/clove_new.jpg" alt="Cloves by Spice Tick">
+                    <div class="product-card-info">
+                        <h3 class="product-card-name">Cloves</h3>
+                        <p class="product-card-origin">The Aromatic Treasure</p>
+                    </div>
+                </div>
+                <div class="product-card-bottom">
+                    <span class="product-card-cta">Discover</span>
+                    <span class="product-card-arrow"><i class="fas fa-arrow-right"></i></span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- SHOWCASE SECTION -->
+    <section class="showcase reveal">
+        <img src="Images/combo.png" alt="Spice Tick Collection">
+        <div class="showcase-overlay">
+            <p class="section-label">The Spice Tick Promise</p>
+            <p class="showcase-quote">"From the misty peaks of Idukki to your home — purity in every pinch."</p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="section contact" id="contact">
+        <div class="contact-grid">
+            <div class="reveal-left">
+                <p class="section-label">Get in Touch</p>
+                <h2 class="section-title">Let's Connect</h2>
+                <div class="gold-divider centered"></div>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div>
+                            <p class="contact-item-label">Address</p>
+                            <p class="contact-item-value">V RS SPICES, 08/331, <span style="white-space: nowrap;">Vazhavara P O,</span><br>Nankuthotty, Idukki,
+                                Kerala — 685515</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div>
+                            <p class="contact-item-label">Phone</p>
+                            <p class="contact-item-value"><a href="tel:+918590091408">+91 8590091408</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <a href="mailto:spicetick@gmail.com" class="contact-icon" title="Email Us"><i class="fas fa-envelope"></i></a>
+                        <div>
+                            <p class="contact-item-label">Email</p>
+                            <p class="contact-item-value"><a href="mailto:spicetick@gmail.com">spicetick@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon" title="Social"><i class="fas fa-share-alt"></i></div>
+                        <div>
+                            <p class="contact-item-label">Social</p>
+                            <div class="social-row">
+                                <a href="https://www.instagram.com/spice_tick?igsh=YjZwMWl3NmViNGtz" target="_blank"
+                                    rel="noopener" class="social-link" title="Instagram"><i
+                                        class="fab fa-instagram"></i></a>
+                                <a href="https://wa.me/918590091408?text=Hi%20Spice%20Tick!%20I%20am%20interested%20in%20your%20spices."
+                                    target="_blank" rel="noopener" class="social-link" title="WhatsApp"><i
+                                        class="fab fa-whatsapp"></i></a>
+                                <a href="mailto:spicetick@gmail.com" class="social-link" title="Email"><i
+                                        class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <a href="#" class="footer-logo"><img src="Images/spicetick_gold_transparent.png" alt="Spice Tick"></a>
+            <p class="footer-text">&copy; 2026 Spice Tick by V RS Spices. All rights reserved.</p>
+            <div class="footer-social">
+                <a href="https://www.instagram.com/spice_tick?igsh=YjZwMWl3NmViNGtz" target="_blank" rel="noopener"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/918590091408" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+                <a href="mailto:spicetick@gmail.com"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/918590091408?text=Hi%20Spice%20Tick!%20I%20am%20interested%20in%20your%20spices."
+        target="_blank" rel="noopener" class="whatsapp-float" title="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        /* === PRELOADER === */
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('preloader').classList.add('hidden');
+            }, 1500);
+        });
+
+        /* === NAVBAR SCROLL === */
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        /* === MOBILE MENU === */
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('open');
+            document.getElementById('hamburger').classList.toggle('active');
+        }
+        function closeMenu() {
+            document.getElementById('navLinks').classList.remove('open');
+            document.getElementById('hamburger').classList.remove('active');
+        }
+
+        /* === SCROLL REVEAL === */
+        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        /* === SMOOTH SCROLL === */
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        /* === PARALLAX EFFECT ON SHOWCASE === */
+        window.addEventListener('scroll', () => {
+            const showcase = document.querySelector('.showcase img');
+            if (showcase) {
+                const rect = showcase.getBoundingClientRect();
+                if (rect.top < window.innerHeight && rect.bottom > 0) {
+                    const speed = (window.innerHeight - rect.top) * 0.1;
+                    showcase.style.transform = `translateY(${speed}px) scale(1.1)`;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
